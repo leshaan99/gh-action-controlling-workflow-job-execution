@@ -34,9 +34,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test code
+        # Assigns an ID to this step, which allows referencing it in later steps
         id: run-tests
         run: npm run test
       - name: Upload test report
+        # The if condition ensures this step runs only if the workflow is in a failed state
         if: failure() && steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
