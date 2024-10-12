@@ -8,8 +8,16 @@ on:
         required: false 
         default: 'dist'
         type: string
+    # Defines outputs that can be used by the calling workflow
+    outputs:
+      result:
+        description: Result of the deployment
+        # Sets the value of the output to the result from the deploy job
+        value: ${{ jobs.deploy.outputs.outcomes }}
 jobs:
   deploy:
+    outputs:
+      outcomes: ${{ steps.set-result.outputs.step-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -21,3 +29,8 @@ jobs:
         run: ls
       - name: Output information
         run: echo "Deploying"
+        # Step to set the output result of the job
+      - name: Set result output
+        id: set-result
+        # Sets the output variable "step-result" to "success"
+        run: echo "step-result=success" >> $GITHUB_OUTPUT
