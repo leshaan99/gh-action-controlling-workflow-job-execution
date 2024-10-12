@@ -15,6 +15,7 @@ jobs:
       - name: Get code
         uses: actions/download-artifact@v3
         with:
+          # The name of the artifact to download is provided by the input "artifacts-name"
           name: ${{ inputs.artifacts-name }}
       - name: List file
         run: ls
