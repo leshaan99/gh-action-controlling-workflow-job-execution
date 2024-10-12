@@ -12,15 +12,12 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        # Assigns an ID 'cache' to reference this step later
         id: cache
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        # The 'if' condition checks if the 'cache-hit' output from the previous 'cache' step is not 'true'
-        # If the cache was not found, the dependencies will be installed
         if: steps.cache.output.cache-hit != 'true'
         run: npm ci
       - name: Lint code
@@ -31,15 +28,12 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        # Assigns an ID 'cache' to reference this step later
         id: cache
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        # The 'if' condition checks if the 'cache-hit' output from the previous 'cache' step is not 'true'
-        # If the cache was not found, the dependencies will be installed
         if: steps.cache.output.cache-hit != 'true'
         run: npm ci
       - name: Test code
