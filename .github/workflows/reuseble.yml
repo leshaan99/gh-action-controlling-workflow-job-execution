@@ -4,7 +4,7 @@ on:
   workflow_call:
     # The name of the input variable
     inputs:
-      artifact-name:
+      artifacts-name:
       description: Name of the deployble artifacts file
       # Indicates this input is optional
       required: false 
