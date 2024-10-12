@@ -1,4 +1,5 @@
 name: Reuseble Deploy
+# This workflow can be called by other workflows
 on: workflow_call
 jobs:
   deploy:
