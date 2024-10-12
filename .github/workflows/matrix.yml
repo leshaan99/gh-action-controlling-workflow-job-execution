@@ -1,0 +1,16 @@
+name: Matrix demo
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the Code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm run ci
+      - name: Build Project
+        run: npm run build
