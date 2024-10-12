@@ -73,10 +73,12 @@ jobs:
       # Passing the input to the reusable workflow
       artifacts-name: 'dist-files'  
   print-deploy-result:
+    # This job depends on the successful completion of the "deploy" job
     needs: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Print deploy outputs
+        # Runs a command to print the output value from the "deploy" job
         run: echo "${{ needs.deploy.outputs.result }}"
   report:
     needs: [lint, deploy]
