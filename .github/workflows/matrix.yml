@@ -6,9 +6,19 @@ jobs:
   build:
     continue-on-error: true 
     strategy: 
+     # Matrix strategy to run the job in multiple environments
       matrix: 
         node-version: [12, 14, 16]
         operating-system: [ubuntu-latest, windows-latest]
+        # Add additional combination
+        include:
+            - node-version: 18
+              operating-system: ubuntu-latest
+        # Excludes the combination
+        exclude:
+            - node-version: 12
+              operating-system: ubuntu-latest
+    # The job will run on the OS specified in the matrix
     runs-on: ${{ matrix.operating-system }}
     steps:
       - name: Get the Code
@@ -16,6 +26,7 @@ jobs:
       - name: Install NodeJS
         uses: actions/setup-node@v3
         with:
+          # Installs the Node.js version specified in the matrix
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
         run: npm ci
