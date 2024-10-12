@@ -70,6 +70,9 @@ jobs:
     needs: build
     # This job reuses another workflow defined in the file at the specified path
     uses: ./.github/workflows/reuseble.yml
+    with:
+      # The "artifact-name" parameter is set to the value "dist-files"
+      artifact-name: dist-files
   report:
     needs: [lint, deploy]
     if: failure()
