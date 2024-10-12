@@ -2,9 +2,11 @@ name: Reuseble Deploy
 on: 
   # This workflow can be called by other workflows
   workflow_call:
+    # The name of the input variable
     inputs:
       artifacts-name:
       description: Name of the deployble artifacts file
+      # Indicates this input is optional
       required: false 
       default: dist
       type: string
