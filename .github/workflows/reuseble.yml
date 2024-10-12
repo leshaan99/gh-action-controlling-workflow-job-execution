@@ -1,7 +1,13 @@
 name: Reuseble Deploy
-on: 
-  # This workflow can be called by other workflows
-  workflow_call:
+on:
+  # This defines that the workflow can be called by other workflows
+  workflow_call:   
+    inputs:        
+      artifacts-name:
+        description: 'Name of the deployable artifacts file'
+        required: false 
+        default: 'dist'
+        type: string
 jobs:
   deploy:
     runs-on: ubuntu-latest
