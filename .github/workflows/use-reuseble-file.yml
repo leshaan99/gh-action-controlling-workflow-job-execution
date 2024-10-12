@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -68,11 +67,11 @@ jobs:
           path: dist
   deploy:
     needs: build
-    # This job reuses another workflow defined in the file at the specified path
-    uses: ./.github/workflows/reuseble.yml
+    # Correct path to the reusable workflow
+    uses: ./.github/workflows/reuseble.yml  
     with:
-      # The "artifact-name" parameter is set to the value "dist-files"
-      artifacts-name: 'dist-files'
+      # Passing the input to the reusable workflow
+      artifacts-name: 'dist-files'  
   report:
     needs: [lint, deploy]
     if: failure()
