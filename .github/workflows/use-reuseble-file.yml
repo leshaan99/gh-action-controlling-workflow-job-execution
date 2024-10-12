@@ -72,7 +72,7 @@ jobs:
     uses: ./.github/workflows/reuseble.yml
     with:
       # The "artifact-name" parameter is set to the value "dist-files"
-      artifact-name: dist-files
+      artifacts-name: 'dist-files'
   report:
     needs: [lint, deploy]
     if: failure()
